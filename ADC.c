@@ -86,7 +86,7 @@ void ADCUpdate(void) {
     //ADCON1bits.SAMP = 0; // stop sampling if in progress
     ADCBuffLoad(ADCBuff); // retain ADCBUF content
     index_new = ADCInpChange(); // switch channel and return its index
-    IFS0bits.ADIF = 0;
+    //IFS0bits.ADIF = 0;
     ADCON1bits.ASAM = 1; // start next sampling cycle
     switch (index) {
         case 0:

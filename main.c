@@ -95,14 +95,8 @@ int main(void)
 
 	while(1)
 	{
-//                for(k=0; k<h; k++)
-//		{
-//		}
-//                MotorAcc(dir, rev, -incr);
-//                for(k=0; k<h; k++)
-//		{
-//		}
-//                MotorAcc(dir, rev, incr);
+        if(IFS0bits.ADIF == 1)
+            IFS0bits.ADIF = 0;
 	}
 
 }

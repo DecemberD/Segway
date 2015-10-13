@@ -1,0 +1,61 @@
+## SCL Builder Setup File: Do not edit!!
+
+## VERSION: MPLAB X
+## FORMAT:  v2.00.01
+## DEVICE:  DSPIC30F6013A
+
+## PINREGACTIONS
+cyc
+0
+0
+ADCBUF0
+ADCBUF1
+ADCBUF2
+ADCBUF3
+ADCBUF4
+ADCBUF5
+--
+0
+253
+250
+251
+256
+250
+0
+--
+&
+## ADVPINREGACTIONS
+--
+&
+--
+COND1
+Any
+
+
+
+0
+cyc
+
+--
+&
+## CLOCK
+
+AN0
+Always
+Never
+Low
+1
+1
+
+--
+&
+## STIMULUSFILE
+&
+## RESPONSEFILE
+&
+## ASYNCH
+&
+## ADVANCEDSCL
+
+0
+&

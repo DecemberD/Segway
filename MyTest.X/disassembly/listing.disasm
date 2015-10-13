@@ -1,0 +1,88 @@
+Disassembly Listing for MyTest
+Generated From:
+C:/MCprojects/Segway/MyTest.X/dist/default/debug/MyTest.X.debug.elf
+2015-06-04 12:22:17
+
+---  C:/MCprojects/Segway/MyTest.X/main_.c  -------------------------------------------------------------
+1:                 /**********************************************************************c
+2:                 * © 2007 Microchip Technology Inc.
+3:                 *
+4:                 * FileName:        main.c
+5:                 * Dependencies:    Header (.h) files if applicable, see below
+6:                 * Processor:       dsPIC33FJ256GP506
+7:                 * Compiler:        MPLAB® C30 v3.00 or higher
+8:                 *
+9:                 *SOFTWARE LICENSE AGREEMENT:
+10:                *Except as otherwise expressly provided below, Microchip Technology Inc. 
+11:                *(Microchip) licenses this software to you solely for use with Microchip products.
+12:                *This software is owned by Microchip and/or its licensors, and is protected under 
+13:                *applicable copyright laws.  All rights reserved.
+14:                *
+15:                *This software and any accompanying information is for suggestion only.  
+16:                *It shall not be deemed to modify Microchip?s standard warranty for its products.
+17:                *It is your responsibility to ensure that this software meets your requirements.
+18:                *
+19:                *WARRANTY DISCLAIMER AND LIMIT ON LIABILITY:  SOFTWARE IS PROVIDED AS IS.  
+20:                *MICROCHIP AND ITS LICENSORS EXPRESSLY DISCLAIM ANY WARRANTY OF ANY KIND, 
+21:                *WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+22:                *OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. 
+23:                *IN NO EVENT SHALL MICROCHIP OR ITS LICENSORS BE LIABLE FOR ANY INCIDENTAL, 
+24:                *SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, 
+25:                *HARM TO YOUR EQUIPMENT, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY 
+26:                *OR SERVICES, ANY CLAIMS BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY 
+27:                *DEFENSE THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER SIMILAR 
+28:                *COSTS.  To the fullest extend allowed by law, Microchip and its licensors 
+29:                *liability shall not exceed the amount of fees, if any, that you have paid 
+30:                *directly to Microchip to use this software.
+31:                *
+32:                *THIRD PARTY SOFTWARE:  Notwithstanding anything to the contrary, any third 
+33:                *party software accompanying this software including but not limited to ITU 
+34:                *software is subject to the terms and conditions of the third party?s license
+35:                *agreement such as the General Public License.  To the extent required by third
+36:                *party licenses covering such third party software, the terms of such license 
+37:                *will apply in lieu of the terms provided herein.  To the extent the terms of 
+38:                *such third party licenses prohibit any of the restrictions described herein, 
+39:                *such restrictions will not apply to such third party software.  THIRD PARTY 
+40:                *SOFTWARE  IS SUBJECT TO THE FOREGOING WARRANTY DISCLAIMER AND LIMIT ON LIABILITY 
+41:                *PROVIDED IN THE PARAGRAPH ABOVE
+42:                *
+43:                *MICROCHIP PROVIDES THIS SOFTWARE (INCLUDING ACCOMPANYING THIRD PARTY SOFTWARE)
+44:                *CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE TERMS.
+45:                ************************************************************************/
+46:                #include "sin90.h"
+47:                
+48:                void main(void)
+49:                {
+0003C4  FA0008     LNK #0x8
+50:                    //int i = sin90[1];
+51:                    unsigned int i = 0xFFFF;
+0003C6  EB8200     SETM W4
+0003C8  780F04     MOV W4, [W14]
+52:                    float y = 0.5;
+0003CA  200004     MOV #0x0, W4
+0003CC  23F005     MOV #0x3F00, W5
+0003CE  980714     MOV W4, [W14+2]
+0003D0  980725     MOV W5, [W14+4]
+53:                    unsigned int x;
+54:                    x = (unsigned int)(y * i);
+0003D2  78021E     MOV [W14], W4
+0003D4  200005     MOV #0x0, W5
+0003D6  BE0004     MOV.D W4, W0
+0003D8  07FEFD     RCALL ___floatunsisf
+0003DA  BE0200     MOV.D W0, W4
+0003DC  90011E     MOV [W14+2], W2
+0003DE  9001AE     MOV [W14+4], W3
+0003E0  BE0004     MOV.D W4, W0
+0003E2  07FF0F     RCALL ___mulsf3
+0003E4  BE0200     MOV.D W0, W4
+0003E6  BE0004     MOV.D W4, W0
+0003E8  07FEDA     RCALL ___fixunssfsi
+0003EA  BE0200     MOV.D W0, W4
+0003EC  980734     MOV W4, [W14+6]
+55:                    x++;
+0003EE  90023E     MOV [W14+6], W4
+0003F0  E80204     INC W4, W4
+0003F2  980734     MOV W4, [W14+6]
+56:                }
+0003F4  FA8000     ULNK
+0003F6  060000     RETURN

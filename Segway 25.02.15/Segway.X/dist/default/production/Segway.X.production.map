@@ -1,0 +1,96 @@
+Microchip Technology Inc, vv1.23 (A)
+
+Tool Name:
+  d:\program files\microchip\xc16\v1.23\bin\bin/elf-ld.exe
+
+Command:
+  -p30F6013A \
+  -o \
+  dist/default/production/Segway.X.production.elf \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/.. \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/PIC24E \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/PIC24E/gld \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/PIC24F \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/PIC24F/gld \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/PIC24H \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/PIC24H/gld \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/dsPIC30F \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/dsPIC30F/gld \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/dsPIC33E \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/dsPIC33E/gld \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../lib/dsPIC33F \
+  -Ld:/program files/microchip/xc16/v1.23/bin/bin/../../support/dsPIC33F/gld \
+  build/default/production/_ext/1472/main.o \
+  build/default/production/_ext/1472/Motors.o \
+  build/default/production/_ext/1472/Segway.o \
+  build/default/production/_ext/1472/Bluetooth.o \
+  --defsym=__MPLAB_BUILD=1 \
+  -Tp30F6013A.gld.00 \
+  --stack=16 \
+  --check-sections \
+  --data-init \
+  --pack-data \
+  --handles \
+  --isr \
+  --no-gc-sections \
+  --fill-upper=0 \
+  --stackguard=16 \
+  --library-path=../../../../Microchip Starter Kits/dsPIC Starter Kit - 1/MPLAB C30/lib \
+  --library-path=. \
+  --no-force-link \
+  --smart-io \
+  -Map=dist/default/production/Segway.X.production.map \
+  --report-mem \
+  -start-group \
+  --library=pic30-elf \
+  --library=m-elf \
+  --library=c-elf \
+  -end-group \
+
+Archive member included because of file (symbol)
+
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o)
+                              (__resetPRI)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o) (__data_init_standard)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+                              build/default/production/_ext/1472/main.o (___addsf3)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(cosf.eo)
+                              build/default/production/_ext/1472/Motors.o (_cosf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+                              build/default/production/_ext/1472/main.o (___divsf3)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fixunssfsi.eo)
+                              build/default/production/_ext/1472/Motors.o (___fixunssfsi)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
+                              build/default/production/_ext/1472/Motors.o (___floatsisf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fpack)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fixunssfsi.eo) (__funpack)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__funpack2)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(futil.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(addsf3.eo) (__fPropagateNaN)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                              build/default/production/_ext/1472/Motors.o (___mulsf3)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sincosf.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(cosf.eo) (__sincosf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sinf.eo)
+                              build/default/production/_ext/1472/Motors.o (_sinf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(errno.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sincosf.eo) (_errno)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(feqltle.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sincosf.eo) (___ltsf2)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fixsfsi.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sincosf.eo) (_(float, int, long long, short, float, short, int))
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(floatsisf.eo) (___floatdisf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(floatdisf.eo) (___floatundisf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fmodf.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(sincosf.eo) (_fmodf)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fmodrem.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fmodf.eo) (__fmodrem)
+d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(fcompare.eo)
+                              d:/program files/microchip/xc16/v1.23/bin/bin/../../lib\libm-elf.a(feqltle.eo) (__fcompare)

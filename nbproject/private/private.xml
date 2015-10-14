@@ -6,6 +6,9 @@
         <group>
             <file>file:/C:/Marcin%20Dec/private/Segway/Segway%2019.07.15.X/ADC.c</file>
             <file>file:/C:/Marcin%20Dec/private/Segway/Segway%2019.07.15.X/Motor.c</file>
+            <file>file:/C:/Marcin%20Dec/private/Segway/Segway%2019.07.15.X/SpeedCurve.c</file>
+            <file>file:/C:/Marcin%20Dec/private/Segway/Segway%2019.07.15.X/cos90.h</file>
+            <file>file:/C:/Marcin%20Dec/private/Segway/Segway%2019.07.15.X/main.c</file>
         </group>
     </open-files>
 </project-private>

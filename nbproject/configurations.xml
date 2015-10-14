@@ -6,8 +6,6 @@
                    projectFiles="true">
       <itemPath>Globals.h</itemPath>
       <itemPath>Motors.h</itemPath>
-      <itemPath>cos90.h</itemPath>
-      <itemPath>sin90.h</itemPath>
       <itemPath>Pid.h</itemPath>
       <itemPath>ADC.h</itemPath>
     </logicalFolder>
@@ -25,6 +23,9 @@
       <itemPath>Pid_c.c</itemPath>
       <itemPath>Pid_s.s</itemPath>
       <itemPath>SpeedCurve.c</itemPath>
+      <itemPath>cos90.c</itemPath>
+      <itemPath>sin90.c</itemPath>
+      <itemPath>Bluetooth.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,6 +33,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -191,7 +195,7 @@
         <property key="codecoverage.outputfile" value=""/>
         <property key="oscillator.auxfrequency" value="120"/>
         <property key="oscillator.auxfrequencyunit" value="Mega"/>
-        <property key="oscillator.frequency" value="7372800"/>
+        <property key="oscillator.frequency" value="29491200"/>
         <property key="oscillator.frequencyunit" value="None"/>
         <property key="oscillator.rcfrequency" value="250"/>
         <property key="oscillator.rcfrequencyunit" value="Kilo"/>

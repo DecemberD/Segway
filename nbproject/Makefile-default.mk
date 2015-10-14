@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c
+SOURCEFILES_QUOTED_IF_SPACED=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c cos90.c sin90.c Bluetooth.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/globals.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Motor.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Pid_c.o.d ${OBJECTDIR}/Pid_s.o.d ${OBJECTDIR}/SpeedCurve.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o ${OBJECTDIR}/cos90.o ${OBJECTDIR}/sin90.o ${OBJECTDIR}/Bluetooth.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/globals.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Motor.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Pid_c.o.d ${OBJECTDIR}/Pid_s.o.d ${OBJECTDIR}/SpeedCurve.o.d ${OBJECTDIR}/cos90.o.d ${OBJECTDIR}/sin90.o.d ${OBJECTDIR}/Bluetooth.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o
+OBJECTFILES=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o ${OBJECTDIR}/cos90.o ${OBJECTDIR}/sin90.o ${OBJECTDIR}/Bluetooth.o
 
 # Source Files
-SOURCEFILES=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c
+SOURCEFILES=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c cos90.c sin90.c Bluetooth.c
 
 
 CFLAGS=
@@ -124,6 +124,27 @@ ${OBJECTDIR}/SpeedCurve.o: SpeedCurve.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  SpeedCurve.c  -o ${OBJECTDIR}/SpeedCurve.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SpeedCurve.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/SpeedCurve.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/cos90.o: cos90.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/cos90.o.d 
+	@${RM} ${OBJECTDIR}/cos90.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  cos90.c  -o ${OBJECTDIR}/cos90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/cos90.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/cos90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/sin90.o: sin90.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sin90.o.d 
+	@${RM} ${OBJECTDIR}/sin90.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sin90.c  -o ${OBJECTDIR}/sin90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sin90.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/sin90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Bluetooth.o: Bluetooth.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Bluetooth.o.d 
+	@${RM} ${OBJECTDIR}/Bluetooth.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Bluetooth.c  -o ${OBJECTDIR}/Bluetooth.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Bluetooth.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Bluetooth.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/globals.o: globals.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -166,6 +187,27 @@ ${OBJECTDIR}/SpeedCurve.o: SpeedCurve.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/SpeedCurve.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  SpeedCurve.c  -o ${OBJECTDIR}/SpeedCurve.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SpeedCurve.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/SpeedCurve.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/cos90.o: cos90.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/cos90.o.d 
+	@${RM} ${OBJECTDIR}/cos90.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  cos90.c  -o ${OBJECTDIR}/cos90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/cos90.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/cos90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/sin90.o: sin90.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sin90.o.d 
+	@${RM} ${OBJECTDIR}/sin90.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sin90.c  -o ${OBJECTDIR}/sin90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sin90.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/sin90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Bluetooth.o: Bluetooth.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Bluetooth.o.d 
+	@${RM} ${OBJECTDIR}/Bluetooth.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Bluetooth.c  -o ${OBJECTDIR}/Bluetooth.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Bluetooth.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Bluetooth.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

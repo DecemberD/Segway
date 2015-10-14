@@ -18,7 +18,7 @@
 #define T2_PERIOD 50L
 //// Timer 2 postscaler factor ////////////////////////////////////
 #define T2_POST 1L
-//// Timer 2 reload value /////////////////////////////////////////
+//// Timer 2 reload value = 1474/////////////////////////////////////////
 #define T2_PR2 (T2_PERIOD)*(F_CY/T2_POST)/1000000L
 //// Step Motor microsteps ///////////////////////////////////////
 //#define MICSTEPS 64
@@ -69,8 +69,10 @@ int temp;
 const int MICSTEPS = 16;
 const int SPEED_SLEWRATE = 1;
 extern __psv__ unsigned int SPEED_CURVE[251][3] __attribute__((space(psv)));
-unsigned int Sin90[17]; //MICSTEPS + 1
-unsigned int Cos90[17]; //MICSTEPS + 1
+extern const    int __attribute__((space(auto_psv),aligned)) Sin90[17];
+extern const    int __attribute__((space(auto_psv),aligned)) Cos90[17];
+//unsigned int Sin90[17]; //MICSTEPS + 1
+//unsigned int Cos90[17]; //MICSTEPS + 1
 
 struct Motor
 {
@@ -607,12 +609,12 @@ void MotorsInputUpdate(void)
 void MotorsInit(void)
 {
     //////////////// MicStepArray Init  /////////////////////////////////////////////////////////////////////////
-	int i;
-	for(i = 0; i <= MICSTEPS; i++)
-	{
-		Sin90[i] = (unsigned int)((float)T2_PR2 * sin((float)i/(float)(MICSTEPS) * (PI/2)));
-		Cos90[i] = (unsigned int)((float)T2_PR2 * cos((float)i/(float)(MICSTEPS) * (PI/2)));
-	}
+//	int i;
+//	for(i = 0; i <= MICSTEPS; i++)
+//	{
+//		Sin90[i] = (unsigned int)((float)T2_PR2 * sin((float)i/(float)(MICSTEPS) * (PI/2)));
+//		Cos90[i] = (unsigned int)((float)T2_PR2 * cos((float)i/(float)(MICSTEPS) * (PI/2)));
+//	}
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////// Motor Control Pins ///////////////////////////////////////////////////////////////////////////////
 	/////////////// Motor Right ///////////////////
@@ -631,7 +633,7 @@ void MotorsInit(void)
         //  In4 -   EMUC2/OC1/RD0
         ///////////////////////////////////////////////
 
-        TRISFbits.TRISF1 = 0;		// Enable Motor driver pins as outputs
+    TRISFbits.TRISF1 = 0;		// Enable Motor driver pins as outputs
 	TRISFbits.TRISF0 = 0;		//
 	TRISDbits.TRISD13 = 0;		//
 	TRISDbits.TRISD12 = 0;		//
@@ -748,14 +750,13 @@ void __attribute__((__interrupt__,no_auto_psv)) _T2Interrupt(void)
 {
 	IFS0bits.T2IF = 0;				// Clear Timer2 interrupt status flag
         ADCon1_m = ADCON1;
-        //otorDecayLoad();                               // Load decay timers for motor drivers
+        MotorDecayLoad();                               // Load decay timers for motor drivers
+        //MotorRightDecayLoad();
         //MotorRightDecayLoad();
         ADCUpdate();                                    // Update anologue values
+        MotorRightDriver();
+        MotorRightDriver();
 
-        //MotorRightDriver();
-//        MotorLeftDriver(&MotorLeft);
-        //MotorInputUpdate(&MotorRight);
-//        MotorStateUpdate(&MotorLeft);
         if(debug == 1)
         {
             temp = 0;

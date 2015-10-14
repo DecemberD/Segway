@@ -26,7 +26,7 @@
 
 //extern int BroadcastAppend(unsigned char* frame);
 
-_FOSC(CSW_FSCM_OFF & XT_PLL4);                      // no clock switching , primary clock XT with PLL x 4
+_FOSC(CSW_FSCM_OFF & XT_PLL16);                      // no clock switching , primary clock XT with PLL x 16
 _FBORPOR( MCLR_EN); //  MCLR as reset pin
 _FWDT(WDT_OFF);                               // watchdog disabled
 

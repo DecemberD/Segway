@@ -61,7 +61,7 @@ void __attribute__((__interrupt__,no_auto_psv)) _U1RXInterrupt(void)
 	RxByte = U1RXREG;
 	if(RxStartFlag == 1)								// enters here only when RxByte contains second byte of received frame with Length property
 	{
-		Length = (unsigned int)RxByte;					// retein Length property used to iterate through the RxFrameBuffer
+		Length = (unsigned int)RxByte;					// retain Length property used to iterate through the RxFrameBuffer
 		RxFrameBuffer[RxFrameBufferIndex++] = RxByte;	// write it also to first byte of the RxFrameBuffer (not used enywhere, but coppied just in case)
 		RxStartFlag = 0;								// prevent entering to this block of code when reads rest of frame
 	}

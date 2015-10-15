@@ -14,7 +14,7 @@
 
 //// Uart Boud Rate in bit/s  //////////////////////////////////////////
 #define UART1_BOUD_RATE 9600L
-//// Uart Boud Rate Generator register value  //////////////////////////
+//// Uart Boud Rate Generator register value  = 191 //////////////////////////
 #define BRG F_CY/16/UART1_BOUD_RATE-1
 //// Uart connection timeout in miliseconds  ///////////////////////////
 #define TIMEOUT 2000L

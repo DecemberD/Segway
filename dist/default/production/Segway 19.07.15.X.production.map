@@ -24,6 +24,7 @@ Command:
   build/default/production/SpeedCurve.o \
   build/default/production/cos90.o \
   build/default/production/sin90.o \
+  build/default/production/Tick.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp30F6013A.gld.00 \
   --stack=16 \
@@ -64,13 +65,13 @@ Program Memory  [Origin = 0x100, Length = 0x15f00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100                0x9e            0xed  (237)
-_02b10cc0561e273f            0x19e               0x5e2           0x8d3  (2259)
+_02b81cc0561f88a6            0x19e               0x5e2           0x8d3  (2259)
 .const                       0x780                0x54            0x7e  (126)
-.text                        0x7d4               0x9f6           0xef1  (3825)
-.dinit                      0x11ca                0xd0           0x138  (312)
-.text                       0x129a                0x1c            0x2a  (42)
+.text                        0x7d4               0xa00           0xf00  (3840)
+.dinit                      0x11d4                0xd6           0x141  (321)
+.text                       0x12aa                0xa4            0xf6  (246)
 
-                     Total program memory used (bytes):         0x1a91  (6801) 5%
+                     Total program memory used (bytes):         0x1b75  (7029) 5%
 
 
 Data Memory  [Origin = 0x800, Length = 0x1800]
@@ -80,10 +81,11 @@ section                    address      alignment gaps    total length  (dec)
 .ndata                       0x800                   0            0x90  (144)
 .nbss                        0x890                   0            0x58  (88)
 .ndata                       0x8e8                   0            0x5c  (92)
-.nbss                        0x944                   0             0xa  (10)
-.ndata                       0x94e                   0             0x4  (4)
+.nbss                        0x944                   0             0xc  (12)
+.ndata                       0x950                   0             0x4  (4)
+TicksSec                     0x954                   0            0x12  (18)
 
-                        Total data memory used (bytes):          0x152  (338) 5%
+                        Total data memory used (bytes):          0x166  (358) 5%
 
 
 Dynamic Memory Usage
@@ -91,9 +93,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x952                              0x16ae  (5806)
+stack                        0x966                              0x169a  (5786)
 
-                        Maximum dynamic memory (bytes):         0x16ae  (5806)
+                        Maximum dynamic memory (bytes):         0x169a  (5786)
 
 
 External Symbols in Data Memory (by address):
@@ -127,10 +129,28 @@ External Symbols in Data Memory (by address):
                     0x093e                  _dir
                     0x0940                  _rev
                     0x0942                  _incr
-                    0x0944                  _debug
-                    0x0946                  _ADCon1_m
-                    0x0948                  _temp
-                    0x094a                  _k
+                    0x0944                  _Tick_100_
+                    0x0946                  _k
+                    0x094a                  _debug
+                    0x094c                  _ADCon1_m
+                    0x094e                  _temp
+                    0x0954                  _Tick
+                    0x0956                  _Tick_100
+                    0x0957                  _Tick_200
+                    0x0958                  _Tick_400
+                    0x0959                  _Tick_800
+                    0x095a                  _Tick_1600
+                    0x095b                  _Tick_3200
+                    0x095c                  _Tick_6400
+                    0x095d                  _Tick_12800
+                    0x095e                  _Tick_25600
+                    0x095f                  _Tick_51200
+                    0x0960                  _Tick_102400
+                    0x0961                  _Tick_204800
+                    0x0962                  _Tick_409600
+                    0x0963                  _Tick_819200
+                    0x0964                  _Tick_1638400
+                    0x0965                  _Tick_3276800
 
 External Symbols in Data Memory (by name):
 
@@ -150,7 +170,7 @@ External Symbols in Data Memory (by name):
                     0x08da                  _ADCVoltageArr
                     0x08e4                  _ADCon1
                     0x08e6                  _ADCon1_2
-                    0x0946                  _ADCon1_m
+                    0x094c                  _ADCon1_m
                     0x08e8                  _DebugSet
                     0x08ea                  _MotorLeft
                     0x0912                  _MotorRight
@@ -160,20 +180,38 @@ External Symbols in Data Memory (by name):
                     0x0818                  _PidCSBR
                     0x0878                  _PidSpeedL
                     0x0860                  _PidSpeedR
-                    0x0944                  _debug
+                    0x0954                  _Tick
+                    0x0956                  _Tick_100
+                    0x0944                  _Tick_100_
+                    0x0960                  _Tick_102400
+                    0x095d                  _Tick_12800
+                    0x095a                  _Tick_1600
+                    0x0964                  _Tick_1638400
+                    0x0957                  _Tick_200
+                    0x0961                  _Tick_204800
+                    0x095e                  _Tick_25600
+                    0x095b                  _Tick_3200
+                    0x0965                  _Tick_3276800
+                    0x0958                  _Tick_400
+                    0x0962                  _Tick_409600
+                    0x095f                  _Tick_51200
+                    0x095c                  _Tick_6400
+                    0x0959                  _Tick_800
+                    0x0963                  _Tick_819200
+                    0x094a                  _debug
                     0x093e                  _dir
                     0x093a                  _h
                     0x0942                  _incr
-                    0x094a                  _k
+                    0x0946                  _k
                     0x0940                  _rev
-                    0x0948                  _temp
+                    0x094e                  _temp
 
 External Symbols in Program Memory (by address):
 
                   0x000100                  __resetPRI
                   0x00012c                  __psv_init
-                  0x00013c                  __data_init
                   0x00013c                  __data_init_standard
+                  0x00013c                  __data_init
                   0x00019a                  __DefaultInterrupt
                   0x00019e                  _SPEED_CURVE
                   0x000780                  _Cos90
@@ -190,26 +228,27 @@ External Symbols in Program Memory (by address):
                   0x000f0a                  _MotorsInputUpdate
                   0x000f18                  _MotorsInit
                   0x001008                  __T2Interrupt
-                  0x001060                  _ADCBuffLoad
-                  0x00108a                  _ADCBuffCopy
-                  0x0010b6                  _ADCMax
-                  0x0010f0                  _ADCMean
-                  0x001122                  _ADCInpChange
-                  0x001138                  _ADCUpdate
-                  0x0011a8                  _ADCInit
-                  0x00129a                  _main
-                  0x0012b2                  _PidExec
+                  0x00106a                  _ADCBuffLoad
+                  0x001094                  _ADCBuffCopy
+                  0x0010c0                  _ADCMax
+                  0x0010fa                  _ADCMean
+                  0x00112c                  _ADCInpChange
+                  0x001142                  _ADCUpdate
+                  0x0011b2                  _ADCInit
+                  0x0012aa                  _PidExec
+                  0x0012fc                  _main
+                  0x00133a                  _Ticks
 
 External Symbols in Program Memory (by name):
 
-                  0x00108a                  _ADCBuffCopy
-                  0x001060                  _ADCBuffLoad
-                  0x0011a8                  _ADCInit
-                  0x001122                  _ADCInpChange
+                  0x001094                  _ADCBuffCopy
+                  0x00106a                  _ADCBuffLoad
+                  0x0011b2                  _ADCInit
+                  0x00112c                  _ADCInpChange
                   0x0007c4                  _ADCInputs
-                  0x0010b6                  _ADCMax
-                  0x0010f0                  _ADCMean
-                  0x001138                  _ADCUpdate
+                  0x0010c0                  _ADCMax
+                  0x0010fa                  _ADCMean
+                  0x001142                  _ADCUpdate
                   0x000780                  _Cos90
                   0x0007d0                  _MICSTEPS
                   0x00093e                  _MotorDecayLoad
@@ -219,18 +258,19 @@ External Symbols in Program Memory (by name):
                   0x000948                  _MotorRightDriver
                   0x000f18                  _MotorsInit
                   0x000f0a                  _MotorsInputUpdate
-                  0x0012b2                  _PidExec
+                  0x0012aa                  _PidExec
                   0x00019e                  _SPEED_CURVE
                   0x0007d2                  _SPEED_SLEWRATE
                   0x0007a2                  _Sin90
                   0x0007d4                  _SpeedSlewRate
+                  0x00133a                  _Ticks
                   0x00019a                  __DefaultInterrupt
                   0x001008                  __T2Interrupt
                   0x00013c                  __data_init
                   0x00013c                  __data_init_standard
                   0x00012c                  __psv_init
                   0x000100                  __resetPRI
-                  0x00129a                  _main
+                  0x0012fc                  _main
 
 Memory Configuration
 
@@ -266,6 +306,7 @@ LOAD build/default/production/Pid_s.o
 LOAD build/default/production/SpeedCurve.o
 LOAD build/default/production/cos90.o
 LOAD build/default/production/sin90.o
+LOAD build/default/production/Tick.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD p30F6013A
 LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libfx-elf.a
@@ -361,41 +402,44 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2c2d
+.debug_info       0x000000       0x2ce9
  *(.debug_info)
- .debug_info      0x000000        0x2fe build/default/production/main.o
- .debug_info      0x0002fe       0x1bed build/default/production/Motor.o
- .debug_info      0x001eeb        0x864 build/default/production/ADC.o
- .debug_info      0x00274f        0x1e2 build/default/production/Pid_c.o
- .debug_info      0x002931         0x84 build/default/production/Pid_s.o
- .debug_info      0x0029b5         0xd6 build/default/production/SpeedCurve.o
- .debug_info      0x002a8b         0xd1 build/default/production/cos90.o
- .debug_info      0x002b5c         0xd1 build/default/production/sin90.o
+ .debug_info      0x000000        0x337 build/default/production/main.o
+ .debug_info      0x000337       0x1bed build/default/production/Motor.o
+ .debug_info      0x001f24        0x864 build/default/production/ADC.o
+ .debug_info      0x002788        0x1e2 build/default/production/Pid_c.o
+ .debug_info      0x00296a         0x84 build/default/production/Pid_s.o
+ .debug_info      0x0029ee         0xd6 build/default/production/SpeedCurve.o
+ .debug_info      0x002ac4         0xd1 build/default/production/cos90.o
+ .debug_info      0x002b95         0xd1 build/default/production/sin90.o
+ .debug_info      0x002c66         0x83 build/default/production/Tick.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x4ff
+.debug_abbrev     0x000000        0x535
  *(.debug_abbrev)
  .debug_abbrev    0x000000          0x1 build/default/production/globals.o
- .debug_abbrev    0x000001         0xa1 build/default/production/main.o
- .debug_abbrev    0x0000a2        0x1bb build/default/production/Motor.o
- .debug_abbrev    0x00025d        0x16c build/default/production/ADC.o
- .debug_abbrev    0x0003c9         0x4e build/default/production/Pid_c.o
- .debug_abbrev    0x000417         0x14 build/default/production/Pid_s.o
- .debug_abbrev    0x00042b         0x42 build/default/production/SpeedCurve.o
- .debug_abbrev    0x00046d         0x49 build/default/production/cos90.o
- .debug_abbrev    0x0004b6         0x49 build/default/production/sin90.o
+ .debug_abbrev    0x000001         0xc3 build/default/production/main.o
+ .debug_abbrev    0x0000c4        0x1bb build/default/production/Motor.o
+ .debug_abbrev    0x00027f        0x16c build/default/production/ADC.o
+ .debug_abbrev    0x0003eb         0x4e build/default/production/Pid_c.o
+ .debug_abbrev    0x000439         0x14 build/default/production/Pid_s.o
+ .debug_abbrev    0x00044d         0x42 build/default/production/SpeedCurve.o
+ .debug_abbrev    0x00048f         0x49 build/default/production/cos90.o
+ .debug_abbrev    0x0004d8         0x49 build/default/production/sin90.o
+ .debug_abbrev    0x000521         0x14 build/default/production/Tick.o
 
-.debug_line       0x000000        0xe61
+.debug_line       0x000000        0xf0b
  *(.debug_line)
  .debug_line      0x000000         0x24 build/default/production/globals.o
- .debug_line      0x000024         0xcc build/default/production/main.o
- .debug_line      0x0000f0        0x99b build/default/production/Motor.o
- .debug_line      0x000a8b        0x2df build/default/production/ADC.o
- .debug_line      0x000d6a         0x2f build/default/production/Pid_c.o
- .debug_line      0x000d99         0x36 build/default/production/Pid_s.o
- .debug_line      0x000dcf         0x34 build/default/production/SpeedCurve.o
- .debug_line      0x000e03         0x2f build/default/production/cos90.o
- .debug_line      0x000e32         0x2f build/default/production/sin90.o
+ .debug_line      0x000024         0xec build/default/production/main.o
+ .debug_line      0x000110        0x9c3 build/default/production/Motor.o
+ .debug_line      0x000ad3        0x2df build/default/production/ADC.o
+ .debug_line      0x000db2         0x2f build/default/production/Pid_c.o
+ .debug_line      0x000de1         0x5c build/default/production/Pid_s.o
+ .debug_line      0x000e3d         0x34 build/default/production/SpeedCurve.o
+ .debug_line      0x000e71         0x2f build/default/production/cos90.o
+ .debug_line      0x000ea0         0x2f build/default/production/sin90.o
+ .debug_line      0x000ecf         0x3c build/default/production/Tick.o
 
 .debug_frame      0x000000        0x14c
  *(.debug_frame)
@@ -403,11 +447,11 @@ userdata
  .debug_frame     0x000024         0xa4 build/default/production/Motor.o
  .debug_frame     0x0000c8         0x84 build/default/production/ADC.o
 
-.debug_str        0x000000        0x1a7
+.debug_str        0x000000        0x1ba
  *(.debug_str)
- .debug_str       0x000000          0x9 build/default/production/main.o
- .debug_str       0x000009        0x122 build/default/production/Motor.o
- .debug_str       0x00012b         0x7c build/default/production/ADC.o
+ .debug_str       0x000000         0x1c build/default/production/main.o
+ .debug_str       0x00001c        0x122 build/default/production/Motor.o
+ .debug_str       0x00013e         0x7c build/default/production/ADC.o
 
 .debug_loc
  *(.debug_loc)
@@ -416,27 +460,27 @@ userdata
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x3c6
+                  0x000000        0x3d4
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x61 build/default/production/main.o
+                  0x000000         0x6f build/default/production/main.o
  .debug_pubnames
-                  0x000061        0x130 build/default/production/Motor.o
+                  0x00006f        0x130 build/default/production/Motor.o
  .debug_pubnames
-                  0x000191        0x17d build/default/production/ADC.o
+                  0x00019f        0x17d build/default/production/ADC.o
  .debug_pubnames
-                  0x00030e         0x5e build/default/production/Pid_c.o
+                  0x00031c         0x5e build/default/production/Pid_c.o
  .debug_pubnames
-                  0x00036c         0x22 build/default/production/SpeedCurve.o
+                  0x00037a         0x22 build/default/production/SpeedCurve.o
  .debug_pubnames
-                  0x00038e         0x1c build/default/production/cos90.o
+                  0x00039c         0x1c build/default/production/cos90.o
  .debug_pubnames
-                  0x0003aa         0x1c build/default/production/sin90.o
+                  0x0003b8         0x1c build/default/production/sin90.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x60
+.debug_aranges    0x000000         0x78
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/main.o
@@ -446,6 +490,8 @@ userdata
                   0x000030         0x18 build/default/production/ADC.o
  .debug_aranges
                   0x000048         0x18 build/default/production/Pid_s.o
+ .debug_aranges
+                  0x000060         0x18 build/default/production/Tick.o
 
 .ivt              0x000004         0x7c
                   0x000004          0x4 LONG 0x19a DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -1557,38 +1603,38 @@ LOAD default_isr
 LOAD data_init
 
 __c30_signature
-                  0x000060         0x3c
+                  0x000078         0x3c
  __c30_signature
-                  0x000060          0x6 build/default/production/globals.o
+                  0x000078          0x6 build/default/production/globals.o
  __c30_signature
-                  0x000066          0x6 build/default/production/main.o
+                  0x00007e          0x6 build/default/production/main.o
  __c30_signature
-                  0x00006c          0x6 build/default/production/Motor.o
+                  0x000084          0x6 build/default/production/Motor.o
  __c30_signature
-                  0x000072          0x6 build/default/production/ADC.o
+                  0x00008a          0x6 build/default/production/ADC.o
  __c30_signature
-                  0x000078          0x6 build/default/production/Pid_c.o
+                  0x000090          0x6 build/default/production/Pid_c.o
  __c30_signature
-                  0x00007e          0x6 build/default/production/SpeedCurve.o
+                  0x000096          0x6 build/default/production/SpeedCurve.o
  __c30_signature
-                  0x000084          0x6 build/default/production/cos90.o
+                  0x00009c          0x6 build/default/production/cos90.o
  __c30_signature
-                  0x00008a          0x6 build/default/production/sin90.o
+                  0x0000a2          0x6 build/default/production/sin90.o
  __c30_signature
-                  0x000090          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x0000a8          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000096          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x0000ae          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
 .debug_pubtypes
-                  0x00009c        0x2af
+                  0x0000b4        0x2af
  .debug_pubtypes
-                  0x00009c         0x2f build/default/production/main.o
+                  0x0000b4         0x2f build/default/production/main.o
  .debug_pubtypes
-                  0x0000cb        0x216 build/default/production/Motor.o
+                  0x0000e3        0x216 build/default/production/Motor.o
  .debug_pubtypes
-                  0x0002e1         0x50 build/default/production/ADC.o
+                  0x0002f9         0x50 build/default/production/ADC.o
  .debug_pubtypes
-                  0x000331         0x1a build/default/production/Pid_c.o
+                  0x000349         0x1a build/default/production/Pid_c.o
 
 .ndata              0x0800         0x90
  .ndata             0x0800         0x90 build/default/production/Pid_c.o
@@ -1629,20 +1675,41 @@ __c30_signature
                     0x0940                  _rev
                     0x0942                  _incr
 
-.nbss               0x0944          0xa
- .nbss              0x0944          0x6 build/default/production/Motor.o
-                    0x0944                  _debug
-                    0x0946                  _ADCon1_m
-                    0x0948                  _temp
- .nbss              0x094a          0x4 build/default/production/main.o
-                    0x094a                  _k
+.nbss               0x0944          0xc
+ .nbss              0x0944          0x6 build/default/production/main.o
+                    0x0944                  _Tick_100_
+                    0x0946                  _k
+ .nbss              0x094a          0x6 build/default/production/Motor.o
+                    0x094a                  _debug
+                    0x094c                  _ADCon1_m
+                    0x094e                  _temp
 
-.ndata              0x094e          0x4
- .ndata             0x094e          0x4 build/default/production/ADC.o
+.ndata              0x0950          0x4
+ .ndata             0x0950          0x4 build/default/production/ADC.o
 
-_02b10cc0561e273f
+TicksSec            0x0954         0x12
+ TicksSec           0x0954         0x12 build/default/production/Tick.o
+                    0x0954                  _Tick
+                    0x0956                  _Tick_100
+                    0x0957                  _Tick_200
+                    0x0958                  _Tick_400
+                    0x0959                  _Tick_800
+                    0x095a                  _Tick_1600
+                    0x095b                  _Tick_3200
+                    0x095c                  _Tick_6400
+                    0x095d                  _Tick_12800
+                    0x095e                  _Tick_25600
+                    0x095f                  _Tick_51200
+                    0x0960                  _Tick_102400
+                    0x0961                  _Tick_204800
+                    0x0962                  _Tick_409600
+                    0x0963                  _Tick_819200
+                    0x0964                  _Tick_1638400
+                    0x0965                  _Tick_3276800
+
+_02b81cc0561f88a6
                     0x819e        0x5e2 load address 0x00019e  
- _02b10cc0561e273f
+ _02b81cc0561f88a6
                     0x819e        0x5e2 build/default/production/SpeedCurve.o
                     0x819e                  _SPEED_CURVE
 
@@ -1657,8 +1724,8 @@ _02b10cc0561e273f
                     0x87d0                  _MICSTEPS
                     0x87d2                  _SPEED_SLEWRATE
 
-.text             0x0007d4        0x9f6
- .text            0x0007d4        0x88c build/default/production/Motor.o
+.text             0x0007d4        0xa00
+ .text            0x0007d4        0x896 build/default/production/Motor.o
                   0x0007d4                  _SpeedSlewRate
                   0x000836                  _MotorRightDecayLoad
                   0x0008ba                  _MotorLeftDecayLoad
@@ -1668,20 +1735,22 @@ _02b10cc0561e273f
                   0x000f0a                  _MotorsInputUpdate
                   0x000f18                  _MotorsInit
                   0x001008                  __T2Interrupt
- .text            0x001060        0x16a build/default/production/ADC.o
-                  0x001060                  _ADCBuffLoad
-                  0x00108a                  _ADCBuffCopy
-                  0x0010b6                  _ADCMax
-                  0x0010f0                  _ADCMean
-                  0x001122                  _ADCInpChange
-                  0x001138                  _ADCUpdate
-                  0x0011a8                  _ADCInit
+ .text            0x00106a        0x16a build/default/production/ADC.o
+                  0x00106a                  _ADCBuffLoad
+                  0x001094                  _ADCBuffCopy
+                  0x0010c0                  _ADCMax
+                  0x0010fa                  _ADCMean
+                  0x00112c                  _ADCInpChange
+                  0x001142                  _ADCUpdate
+                  0x0011b2                  _ADCInit
 
-.dinit            0x0011ca         0xd0
- .dinit           0x0011ca         0xd0 data_init
+.dinit            0x0011d4         0xd6
+ .dinit           0x0011d4         0xd6 data_init
 
-.text             0x00129a         0x1c
- .text            0x00129a         0x18 build/default/production/main.o
-                  0x00129a                  _main
- .text            0x0012b2          0x4 build/default/production/Pid_s.o
-                  0x0012b2                  _PidExec
+.text             0x0012aa         0xa4
+ .text            0x0012aa         0x52 build/default/production/Pid_s.o
+                  0x0012aa                  _PidExec
+ .text            0x0012fc         0x3e build/default/production/main.o
+                  0x0012fc                  _main
+ .text            0x00133a         0x14 build/default/production/Tick.o
+                  0x00133a                  _Ticks

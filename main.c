@@ -23,7 +23,8 @@
 //#define PI 3.1415926535897932384626433832795F
 //extern union MPU5060 Mpu5060;
 //extern union PID Pid;
-
+extern int Tick_100;
+int Tick_100_;
 //extern int BroadcastAppend(unsigned char* frame);
 
 _FOSC(CSW_FSCM_OFF & XT_PLL16);                      // no clock switching , primary clock XT with PLL x 16
@@ -95,6 +96,14 @@ int main(void)
 
 	while(1)
 	{
+        if(Tick_100 && !Tick_100_)
+        {
+            Tick_100_++;
+        }
+        else if(Tick_100 && Tick_100_)
+        {
+            Tick_100_--;
+        }
         if(IFS0bits.ADIF == 1)
             IFS0bits.ADIF = 0;
 	}

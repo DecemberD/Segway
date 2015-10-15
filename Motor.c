@@ -71,6 +71,7 @@ const int SPEED_SLEWRATE = 1;
 extern __psv__ unsigned int SPEED_CURVE[251][3] __attribute__((space(psv)));
 extern const    int __attribute__((space(auto_psv),aligned)) Sin90[17];
 extern const    int __attribute__((space(auto_psv),aligned)) Cos90[17];
+extern void Tick(void);
 //unsigned int Sin90[17]; //MICSTEPS + 1
 //unsigned int Cos90[17]; //MICSTEPS + 1
 
@@ -756,6 +757,9 @@ void __attribute__((__interrupt__,no_auto_psv)) _T2Interrupt(void)
         ADCUpdate();                                    // Update anologue values
         MotorRightDriver();
         MotorRightDriver();
+        MotorsInputUpdate();
+        
+        Tick();
 
         if(debug == 1)
         {

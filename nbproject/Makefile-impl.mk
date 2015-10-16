@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Segway 19.07.15.X
+PROJECTNAME=Segway
 
 # Active Configuration
 DEFAULTCONF=default

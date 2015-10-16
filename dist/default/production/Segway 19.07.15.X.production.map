@@ -65,7 +65,7 @@ Program Memory  [Origin = 0x100, Length = 0x15f00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100                0x9e            0xed  (237)
-_02b81cc0561f88a6            0x19e               0x5e2           0x8d3  (2259)
+_002f1cc05620bbf5            0x19e               0x5e2           0x8d3  (2259)
 .const                       0x780                0x54            0x7e  (126)
 .text                        0x7d4               0xa00           0xf00  (3840)
 .dinit                      0x11d4                0xd6           0x141  (321)
@@ -1707,9 +1707,9 @@ TicksSec            0x0954         0x12
                     0x0964                  _Tick_1638400
                     0x0965                  _Tick_3276800
 
-_02b81cc0561f88a6
+_002f1cc05620bbf5
                     0x819e        0x5e2 load address 0x00019e  
- _02b81cc0561f88a6
+ _002f1cc05620bbf5
                     0x819e        0x5e2 build/default/production/SpeedCurve.o
                     0x819e                  _SPEED_CURVE
 

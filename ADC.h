@@ -7,6 +7,9 @@
 * Compiler:        MPLAB® XC16 C Compiler
 *
 ************************************************************************/
+#ifndef ADC.h
+#define ADC.h
+
 #include <p30f6013A.h>
 /////////////// Motor Right ///////////////////
         //  CSA - AN8/RB8
@@ -18,11 +21,11 @@
         // Current - AN10/RB10
         // Voltage - AN11/RB11
 
-#define ADC_BUFF_LENGTH 5
-#define ADC_INPUTS  6
-extern int* ADC16Ptr;
-extern int ADCBuff[ADC_BUFF_LENGTH];
-extern const int ADCInputs[ADC_INPUTS];
+//#define ADC_BUFF_LENGTH 5
+//#define ADC_INPUTS  6
+//extern int* ADC16Ptr;
+//extern int ADCBuff[ADC_BUFF_LENGTH];
+//extern const int ADCInputs[ADC_INPUTS];
 extern int ADCCSARight;
 extern int ADCCSBRight;
 extern int ADCCSALeft;
@@ -34,3 +37,4 @@ extern int ADCInpChange(void);
 extern void ADCUpdate(void);
 extern void ADCInit(void);
 
+#endif

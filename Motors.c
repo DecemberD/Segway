@@ -8,11 +8,12 @@
 *
 ************************************************************************/
 #include <p30f6013A.h>
-#include <math.h>
-#include "Globals.h"
+//#include <math.h>
 #include "Motors.h"
 #include "Pid.h"
 #include "ADC.h"
+#include "Curves.h"
+#include "CPU.h"
 
 //// Timer 2 period in microseconds ///////////////////////////////
 #define T2_PERIOD 50L
@@ -23,7 +24,7 @@
 //// Step Motor microsteps ///////////////////////////////////////
 //#define MICSTEPS 64
 
-#define PI 3.1415926535897932384626433832795F
+//#define PI 3.1415926535897932384626433832795F
 //// Timer 2 postscaler register value ///////////////////////////
 #if (T2_POST == 256)
 	#define T2_TCKPS 3
@@ -68,10 +69,9 @@ int temp;
 
 const int MICSTEPS = 16;
 const int SPEED_SLEWRATE = 1;
-extern __psv__ unsigned int SPEED_CURVE[251][3] __attribute__((space(psv)));
-extern const    int __attribute__((space(auto_psv),aligned)) Sin90[17];
-extern const    int __attribute__((space(auto_psv),aligned)) Cos90[17];
-extern void Tick(void);
+
+
+struct Ticks Tick;
 //unsigned int Sin90[17]; //MICSTEPS + 1
 //unsigned int Cos90[17]; //MICSTEPS + 1
 
@@ -572,8 +572,8 @@ inline void MotorRightDriver(void)
 //}
 void MotorInputUpdate(struct Motor* motor)
 {
-    motor->StepInc = SPEED_CURVE[motor->SpeedAbs][1];
-    motor->StepPrescVal = SPEED_CURVE[motor->SpeedAbs][2];
+    motor->StepInc = SPEED_CURVE[motor->SpeedAbs][0];
+    motor->StepPrescVal = SPEED_CURVE[motor->SpeedAbs][1];
 
     SpeedSlewRate(motor);
     
@@ -581,7 +581,7 @@ void MotorInputUpdate(struct Motor* motor)
     {
         if(motor->SpeedAbs == 0)
         {
-            motor->StepIncLatch = SPEED_CURVE[1][1];
+            motor->StepIncLatch = SPEED_CURVE[1][0];
         }
         motor->SpeedAbs = motor->Speed;
         motor->Direction = 1;
@@ -591,7 +591,7 @@ void MotorInputUpdate(struct Motor* motor)
     {
         if(motor->SpeedAbs == 0)
         {
-            motor->StepIncLatch = SPEED_CURVE[1][1];
+            motor->StepIncLatch = SPEED_CURVE[1][0];
         }
         motor->SpeedAbs = -(motor->Speed);
         motor->Direction = 0;
@@ -749,17 +749,17 @@ void MotorsInit(void)
 ///////// Timer2 Interrupt routine //////////////////////
 void __attribute__((__interrupt__,no_auto_psv)) _T2Interrupt(void)
 {
+    ADCON1bits.ASAM = 0;            // stop auto sampling
 	IFS0bits.T2IF = 0;				// Clear Timer2 interrupt status flag
         ADCon1_m = ADCON1;
-        MotorDecayLoad();                               // Load decay timers for motor drivers
-        //MotorRightDecayLoad();
-        //MotorRightDecayLoad();
-        ADCUpdate();                                    // Update anologue values
+        MotorDecayLoad();           // Load decay timers for motor drivers
+        ADCUpdate();                // Update anologue values
         MotorRightDriver();
         MotorRightDriver();
-        MotorsInputUpdate();
+        //MotorsInputUpdate();
         
-        Tick();
+        //Ticks();
+        asm ("inc %0" : "+g"(Tick));
 
         if(debug == 1)
         {

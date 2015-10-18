@@ -12,8 +12,8 @@
 #include "ADC.h"
 //#include "Bluetooth.h"
 #include "Motors.h"
-#include "Globals.h"
 #include <math.h>
+#include "CPU.h"
 
 // T2_PERIOD is PWM period in microseconds
 //#define T2_PERIOD 50L
@@ -23,13 +23,11 @@
 //#define PI 3.1415926535897932384626433832795F
 //extern union MPU5060 Mpu5060;
 //extern union PID Pid;
-extern int Tick_100;
-int Tick_100_;
+
+
 //extern int BroadcastAppend(unsigned char* frame);
 
-_FOSC(CSW_FSCM_OFF & XT_PLL16);                      // no clock switching , primary clock XT with PLL x 16
-_FBORPOR( MCLR_EN); //  MCLR as reset pin
-_FWDT(WDT_OFF);                               // watchdog disabled
+                              // watchdog disabled
 
 
 
@@ -43,6 +41,7 @@ int dir = 1;
 int rev = 32000;
 int incr = 200;
 
+struct Ticks Tick_;
 
 
 
@@ -96,14 +95,24 @@ int main(void)
 
 	while(1)
 	{
-        if(Tick_100 && !Tick_100_)
+        if(Tick.Tick_100 && !Tick_.Tick_100)
         {
-            Tick_100_++;
+            Tick_.Tick_100++;
         }
-        else if(Tick_100 && Tick_100_)
+        else if(!Tick.Tick_100 && Tick_.Tick_100)
         {
-            Tick_100_--;
+            Tick_.Tick_100--;
         }
+        
+        if(Tick.Tick_200 && !Tick_.Tick_200)
+        {
+            Tick_.Tick_200++;
+        }
+        else if(!Tick.Tick_200 && Tick_.Tick_200)
+        {
+            Tick_.Tick_200--;
+        }
+        
         if(IFS0bits.ADIF == 1)
             IFS0bits.ADIF = 0;
 	}

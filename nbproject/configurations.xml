@@ -8,6 +8,7 @@
       <itemPath>Motors.h</itemPath>
       <itemPath>Pid.h</itemPath>
       <itemPath>ADC.h</itemPath>
+      <itemPath>Curves.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,16 +17,13 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>globals.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>Motor.c</itemPath>
       <itemPath>ADC.c</itemPath>
       <itemPath>Pid_c.c</itemPath>
       <itemPath>Pid_s.s</itemPath>
-      <itemPath>SpeedCurve.c</itemPath>
       <itemPath>cos90.c</itemPath>
-      <itemPath>sin90.c</itemPath>
-      <itemPath>Tick.s</itemPath>
+      <itemPath>CPU.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

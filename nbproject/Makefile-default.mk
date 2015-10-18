@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c cos90.c sin90.c Tick.s
+SOURCEFILES_QUOTED_IF_SPACED=main.c ADC.c Pid_c.c Pid_s.s Motors.c CPU.c Curves.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o ${OBJECTDIR}/cos90.o ${OBJECTDIR}/sin90.o ${OBJECTDIR}/Tick.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/globals.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Motor.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Pid_c.o.d ${OBJECTDIR}/Pid_s.o.d ${OBJECTDIR}/SpeedCurve.o.d ${OBJECTDIR}/cos90.o.d ${OBJECTDIR}/sin90.o.d ${OBJECTDIR}/Tick.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/Motors.o ${OBJECTDIR}/CPU.o ${OBJECTDIR}/Curves.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Pid_c.o.d ${OBJECTDIR}/Pid_s.o.d ${OBJECTDIR}/Motors.o.d ${OBJECTDIR}/CPU.o.d ${OBJECTDIR}/Curves.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/globals.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Motor.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/SpeedCurve.o ${OBJECTDIR}/cos90.o ${OBJECTDIR}/sin90.o ${OBJECTDIR}/Tick.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Pid_c.o ${OBJECTDIR}/Pid_s.o ${OBJECTDIR}/Motors.o ${OBJECTDIR}/CPU.o ${OBJECTDIR}/Curves.o
 
 # Source Files
-SOURCEFILES=globals.c main.c Motor.c ADC.c Pid_c.c Pid_s.s SpeedCurve.c cos90.c sin90.c Tick.s
+SOURCEFILES=main.c ADC.c Pid_c.c Pid_s.s Motors.c CPU.c Curves.c
 
 
 CFLAGS=
@@ -82,26 +82,12 @@ MP_LINKER_FILE_OPTION=,--script=p30F6013A.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/globals.o: globals.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/globals.o.d 
-	@${RM} ${OBJECTDIR}/globals.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  globals.c  -o ${OBJECTDIR}/globals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/globals.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/globals.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Motor.o: Motor.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Motor.o.d 
-	@${RM} ${OBJECTDIR}/Motor.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Motor.c  -o ${OBJECTDIR}/Motor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Motor.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Motor.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -117,48 +103,34 @@ ${OBJECTDIR}/Pid_c.o: Pid_c.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Pid_c.c  -o ${OBJECTDIR}/Pid_c.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Pid_c.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Pid_c.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/SpeedCurve.o: SpeedCurve.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Motors.o: Motors.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SpeedCurve.o.d 
-	@${RM} ${OBJECTDIR}/SpeedCurve.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  SpeedCurve.c  -o ${OBJECTDIR}/SpeedCurve.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SpeedCurve.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/SpeedCurve.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Motors.o.d 
+	@${RM} ${OBJECTDIR}/Motors.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Motors.c  -o ${OBJECTDIR}/Motors.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Motors.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Motors.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/cos90.o: cos90.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/CPU.o: CPU.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/cos90.o.d 
-	@${RM} ${OBJECTDIR}/cos90.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  cos90.c  -o ${OBJECTDIR}/cos90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/cos90.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/cos90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/CPU.o.d 
+	@${RM} ${OBJECTDIR}/CPU.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  CPU.c  -o ${OBJECTDIR}/CPU.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/CPU.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/CPU.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/sin90.o: sin90.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Curves.o: Curves.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/sin90.o.d 
-	@${RM} ${OBJECTDIR}/sin90.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  sin90.c  -o ${OBJECTDIR}/sin90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sin90.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/sin90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Curves.o.d 
+	@${RM} ${OBJECTDIR}/Curves.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Curves.c  -o ${OBJECTDIR}/Curves.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Curves.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Curves.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/globals.o: globals.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/globals.o.d 
-	@${RM} ${OBJECTDIR}/globals.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  globals.c  -o ${OBJECTDIR}/globals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/globals.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/globals.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Motor.o: Motor.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Motor.o.d 
-	@${RM} ${OBJECTDIR}/Motor.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Motor.c  -o ${OBJECTDIR}/Motor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Motor.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/Motor.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -174,26 +146,26 @@ ${OBJECTDIR}/Pid_c.o: Pid_c.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Pid_c.c  -o ${OBJECTDIR}/Pid_c.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Pid_c.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Pid_c.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/SpeedCurve.o: SpeedCurve.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Motors.o: Motors.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SpeedCurve.o.d 
-	@${RM} ${OBJECTDIR}/SpeedCurve.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  SpeedCurve.c  -o ${OBJECTDIR}/SpeedCurve.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SpeedCurve.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/SpeedCurve.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Motors.o.d 
+	@${RM} ${OBJECTDIR}/Motors.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Motors.c  -o ${OBJECTDIR}/Motors.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Motors.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Motors.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/cos90.o: cos90.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/CPU.o: CPU.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/cos90.o.d 
-	@${RM} ${OBJECTDIR}/cos90.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  cos90.c  -o ${OBJECTDIR}/cos90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/cos90.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/cos90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/CPU.o.d 
+	@${RM} ${OBJECTDIR}/CPU.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  CPU.c  -o ${OBJECTDIR}/CPU.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/CPU.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/CPU.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/sin90.o: sin90.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Curves.o: Curves.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/sin90.o.d 
-	@${RM} ${OBJECTDIR}/sin90.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  sin90.c  -o ${OBJECTDIR}/sin90.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sin90.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/sin90.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Curves.o.d 
+	@${RM} ${OBJECTDIR}/Curves.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Curves.c  -o ${OBJECTDIR}/Curves.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Curves.o.d"        -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Curves.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
@@ -207,13 +179,6 @@ ${OBJECTDIR}/Pid_s.o: Pid_s.s  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_AS_PRE)  Pid_s.s  -o ${OBJECTDIR}/Pid_s.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1  -omf=elf -Wa,-MD,"${OBJECTDIR}/Pid_s.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_SIMULATOR=1,-g,--no-relax$(MP_EXTRA_AS_POST)
 	@${FIXDEPS} "${OBJECTDIR}/Pid_s.o.d"  $(SILENT)  -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/Tick.o: Tick.s  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Tick.o.d 
-	@${RM} ${OBJECTDIR}/Tick.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  Tick.s  -o ${OBJECTDIR}/Tick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1  -omf=elf -Wa,-MD,"${OBJECTDIR}/Tick.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_SIMULATOR=1,-g,--no-relax$(MP_EXTRA_AS_POST)
-	@${FIXDEPS} "${OBJECTDIR}/Tick.o.d"  $(SILENT)  -rsi ${MP_CC_DIR}../  
-	
 else
 ${OBJECTDIR}/Pid_s.o: Pid_s.s  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -221,13 +186,6 @@ ${OBJECTDIR}/Pid_s.o: Pid_s.s  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/Pid_s.o 
 	${MP_CC} $(MP_EXTRA_AS_PRE)  Pid_s.s  -o ${OBJECTDIR}/Pid_s.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -Wa,-MD,"${OBJECTDIR}/Pid_s.o.d",--defsym=__MPLAB_BUILD=1,-g,--no-relax$(MP_EXTRA_AS_POST)
 	@${FIXDEPS} "${OBJECTDIR}/Pid_s.o.d"  $(SILENT)  -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/Tick.o: Tick.s  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Tick.o.d 
-	@${RM} ${OBJECTDIR}/Tick.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  Tick.s  -o ${OBJECTDIR}/Tick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -Wa,-MD,"${OBJECTDIR}/Tick.o.d",--defsym=__MPLAB_BUILD=1,-g,--no-relax$(MP_EXTRA_AS_POST)
-	@${FIXDEPS} "${OBJECTDIR}/Tick.o.d"  $(SILENT)  -rsi ${MP_CC_DIR}../  
 	
 endif
 

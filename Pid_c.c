@@ -1,4 +1,12 @@
-
+/**********************************************************************c
+* Author: Marcin Dec
+* Date: 11.08.2015
+* FileName:        Pid_c.c
+* Dependencies:    
+* Processor:       dsPIC30F6013A
+* Compiler:        MPLAB® XC16 C Compiler
+*
+************************************************************************/
 #include <p30f6013A.h>
 #include "Pid.h"
 

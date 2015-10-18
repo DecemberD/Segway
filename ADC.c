@@ -8,6 +8,7 @@
  *
  ************************************************************************/
 #include <p30f6013A.h>
+#include "ADC.h"
 /////////////// Motor Right ///////////////////
 //  CSA - AN8/RB8
 //  CSB - AN9/RB9
@@ -39,18 +40,19 @@ int ADCon1;
 int ADCon1_2;
 void ADCBuffLoad(int* buff) {
     int i;
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ADC_BUFF_LENGTH; i++) {
         *(buff + i) = *(ADC16Ptr + i);
     }
 }
-void ADCBuffCopy(int* buff, int* copy) {
+void ADCBuffCopy(int* copy) {
     int i;
-    for (i = 0; i < 6; i++) {
-        *(copy + i) = *(buff + i);
+    for (i = 0; i < ADC_BUFF_LENGTH; i++) {
+        *(copy + i) = *(ADC16Ptr + i);
     }
 }
-int ADCMax(int* buff) {
+int ADCMax(void) {
     int max = 0, i;
+    int* buff = ADC16Ptr;
     for (i = 0; i < ADC_BUFF_LENGTH; i++) {
         if (*buff > max) {
             max = *buff++;
@@ -59,9 +61,10 @@ int ADCMax(int* buff) {
     return max;
 }
 
-int ADCMean(int* buff) {
+int ADCMean(void) {
     int mean = 0, i;
-    for (i = 0; i < ADC_BUFF_LENGTH; i++) {
+    int* buff = ADC16Ptr;
+    for (i = 0; i < ADC_BUFF_LENGTH - 1; i++) {
         mean += *buff++;
     }
     mean >>= 2;
@@ -80,38 +83,38 @@ int ADCInpChange(void) {
 void ADCUpdate(void) {
     static int index = -1;
     int index_new;
-    ADCon1_2 = ADCON1;
-    ADCON1bits.ASAM = 0; // stop auto sampling
-    ADCon1 = ADCON1;
+    //ADCon1_2 = ADCON1;
+    
+    //ADCon1 = ADCON1;
     //ADCON1bits.SAMP = 0; // stop sampling if in progress
-    ADCBuffLoad(ADCBuff); // retain ADCBUF content
+    //ADCBuffLoad(ADCBuff); // retain ADCBUF content
     index_new = ADCInpChange(); // switch channel and return its index
     //IFS0bits.ADIF = 0;
     ADCON1bits.ASAM = 1; // start next sampling cycle
     switch (index) {
         case 0:
-            ADCBuffCopy(ADCBuff, ADCCSARightArr);
-            //ADCCSARight = ADCMax(ADCBuff);
+            ADCBuffCopy(ADCCSARightArr);
+            ADCCSARight = ADCMax();
             break;
         case 1:
-            ADCBuffCopy(ADCBuff, ADCCSBRightArr);
-            //ADCCSBRight = ADCMax(ADCBuff);
+            ADCBuffCopy(ADCCSBRightArr);
+            ADCCSBRight = ADCMax();
             break;
         case 2:
-            ADCBuffCopy(ADCBuff, ADCCSALeftArr);
-            //ADCCSALeft = ADCMax(ADCBuff);
+            ADCBuffCopy(ADCCSALeftArr);
+            ADCCSALeft = ADCMax();
             break;
         case 3:
-            ADCBuffCopy(ADCBuff, ADCCSBLeftArr);
-            //ADCCSBLeft = ADCMax(ADCBuff);
+            ADCBuffCopy(ADCCSBLeftArr);
+            ADCCSBLeft = ADCMax();
             break;
         case 4:
-            ADCBuffCopy(ADCBuff, ADCCurrentArr);
-            //ADCCurrent = ADCMean(ADCBuff);
+            ADCBuffCopy(ADCCurrentArr);
+            ADCCurrent = ADCMean();
             break;
         case 5:
-            ADCBuffCopy(ADCBuff, ADCVoltageArr);
-            //ADCVoltage = ADCMean(ADCBuff);
+            ADCBuffCopy(ADCVoltageArr);
+            ADCVoltage = ADCMean();
             break;
     }
     index = index_new; // retain index for next cycle
@@ -187,11 +190,11 @@ void ADCInit(void) {
     ADCSSL = 0;
     /////////////////////////////////////////////////////////////////////////////////////////////
     /* bit 15-13 Unimplemented: Read as ?0?
-    000,0|00010,|0,0,10|0110
+    000,0|00001,|0,0,10|0111
     bit 12-8 SAMC<4:0>: Auto Sample Time bits
     11111 = 31 TAD
     ·····
-    *00010 = 2 TAD
+    00010 = 2 TAD
     *00001 = 1 TAD
     00000 = 0 TAD
     bit 7 ADRC: A/D Conversion Clock Source bit
@@ -203,7 +206,11 @@ void ADCInit(void) {
     ······
     000001 = TCY/2 ? (ADCS<5:0> + 1) = TCY
     000000 = TCY/2 ? (ADCS<5:0> + 1) = TCY/2 */
-    ADCON3 = 0x0226; // Sample time = 2Tad, Tad = 666.67 ns, ADCS = 2TAD/TCY - 1 = 2*666.67/33.9 - 1 = 38 = 100110
+    ADCON3 = 0x0127; // Sample time = 1Tad, Tad = 666.67 ns, ADCS = 2TAD/TCY - 1 = 2*666.67/33.9 - 1 = 39 = 100111
+    // Five sample/convert cycles lasts 47,471788194us what gives 2,5282118056us space between series of sample/convert.
+    // Sample/convert starts 3,492567us after interrupt. As a result last conversion ends 0,964355194us after interrupt
+    //begins what gives safe time to terminate sample/conversion sequence before subsequent sample begins. Then buffer is read
+    // and subsequent sample/convert sequence begins.
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /* bit 15-13 VCFG<2:0>: Voltage Reference Configuration bits
     000,0,|0,0,00,|0,0,01|00,0,0
@@ -239,7 +246,7 @@ void ADCInit(void) {
     1 = Uses MUX A input multiplexer settings for first sample, then alternate between MUX B and MUX A input
     multiplexer settings for all subsequent samples
     0* = Always use MUX A input multiplexer settings */
-    ADCON2 = 0x0010; // Interrupt wil not be used anyway
+    ADCON2 = 0x0010; // Interrupt at the completion of five conversions
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ADCON1bits.ADON = 1; // turn ADC ON
 

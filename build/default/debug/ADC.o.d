@@ -1,2 +1,3 @@
 build/default/debug/ADC.o:  \
-ADC.c 
+ADC.c  \
+ADC.h 

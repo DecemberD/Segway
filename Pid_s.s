@@ -1,3 +1,12 @@
+;**********************************************************************c
+;* Author: Marcin Dec
+;* Date: 11.08.2015
+;* FileName:        Pid_s.s
+;* Dependencies:    
+;* Processor:       dsPIC30F6013A
+;* Compiler:        MPLAB® XC16 C Compiler
+;*
+;************************************************************************/
 ;struct Pid
 ;{
 ;   // external
@@ -25,6 +34,7 @@
 ;	out >>= 16;
 ;	return out + pid->offset;
 ;}
+ .text
  .global _PidExec
 _PidExec:
     ;;;;;;;;;;; siple or inverse control ;;;;;;;;;;;;;;;;;;;;;;;;
